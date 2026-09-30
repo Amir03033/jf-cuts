@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Barbershop extends Model
 {
     use HasFactory;
 
     // owner_id staat er bewust NIET in: de eigenaar zet je via de relatie, nooit via een formulier
-    protected $fillable = ['name', 'description', 'address', 'booking_interval'];
+    protected $fillable = ['name', 'description', 'address'];
 
     public function owner(): BelongsTo
     {
@@ -42,5 +43,9 @@ class Barbershop extends Model
     public function images(): HasMany
     {
         return $this->hasMany(ShopImage::class)->orderBy('sort_order');
+    }
+    public function settings(): HasOne
+    {
+        return $this->hasOne(BarbershopSetting::class)->withDefault();
     }
 }

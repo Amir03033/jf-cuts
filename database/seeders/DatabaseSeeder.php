@@ -28,6 +28,13 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Verven',  'duration' => 60, 'price' => 45],
         ]);
 
+        $shop->settings()->create([
+            'booking_interval' => 30,
+            'max_booking_days' => 30,
+            'cancellation_limit' => 60,
+            'reschedule_limit' => 60,
+        ]);
+
         // 1 = maandag ... 7 = zondag
         $week = [
             1 => ['10:00', '18:00'],

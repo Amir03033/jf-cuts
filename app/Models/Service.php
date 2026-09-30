@@ -13,6 +13,10 @@ class Service extends Model
 
     protected $fillable = ['name', 'duration', 'price', 'active'];
 
+    protected $attributes = [
+        'active' => true,
+    ];
+
     protected function casts(): array
     {
         return [
