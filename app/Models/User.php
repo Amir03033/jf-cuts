@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Enums\UserRole;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -16,8 +15,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * De velden die massaal ingevuld mogen worden.
-     * 'role' staat hier bewust NIET in (mass-assignment protection).
+     * Velden die massaal ingevuld mogen worden.
      */
     protected $fillable = [
         'name',
@@ -27,7 +25,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Velden die nooit in JSON/arrays terechtkomen.
+     * Velden die verborgen blijven in arrays en JSON.
      */
     protected $hidden = [
         'password',
@@ -35,7 +33,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * Database casts.
      *
      * @return array<string, string>
      */
@@ -47,23 +45,41 @@ class User extends Authenticatable
         ];
     }
 
+    /**
+     * Controleert of de gebruiker een barber is.
+     */
     public function isBarber(): bool
     {
         return $this->role === UserRole::Barber;
     }
 
+    /**
+     * Controleert of de gebruiker een customer is.
+     */
     public function isCustomer(): bool
     {
         return $this->role === UserRole::Customer;
     }
 
+    /**
+     * Barbershops die door deze gebruiker worden beheerd.
+     */
     public function barbershops(): HasMany
     {
-        return $this->hasMany(Barbershop::class, 'owner_id');
+        return $this->hasMany(
+            Barbershop::class,
+            'owner_id'
+        );
     }
 
+    /**
+     * Afspraken van deze customer.
+     */
     public function appointments(): HasMany
     {
-        return $this->hasMany(Appointment::class, 'customer_id');
+        return $this->hasMany(
+            Appointment::class,
+            'customer_id'
+        );
     }
 }

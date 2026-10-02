@@ -1,0 +1,2589 @@
+
+    /* =========================================================
+       JF CUTS — CUSTOMER APP
+       Premium mobile-first barber interface
+       ========================================================= */
+
+
+    /* =========================================================
+       RESET
+       ========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: #0a0a09;
+    color-scheme: dark;
+}
+
+body {
+    min-height: 100%;
+    margin: 0;
+
+    background:
+        radial-gradient(
+            circle at 50% -15%,
+            rgba(201, 166, 107, 0.08),
+            transparent 35%
+        ),
+        #0a0a09;
+
+    color: #f3efe8;
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: inherit;
+}
+
+button {
+    appearance: none;
+}
+
+svg {
+    display: block;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+:root {
+    --jf-bg: #0a0a09;
+    --jf-surface: #111110;
+    --jf-surface-2: #171715;
+    --jf-surface-3: #1d1d1a;
+
+    --jf-text: #f3efe8;
+    --jf-text-soft: #c5c0b7;
+    --jf-muted: #858078;
+
+    --jf-line: rgba(255, 255, 255, 0.08);
+    --jf-line-strong: rgba(255, 255, 255, 0.13);
+
+    --jf-gold: #c9a66b;
+    --jf-gold-light: #e1c28a;
+    --jf-gold-dark: #9d7b45;
+
+    --jf-green: #7fa982;
+    --jf-red: #c88787;
+
+    --jf-radius-sm: 12px;
+    --jf-radius-md: 18px;
+    --jf-radius-lg: 24px;
+
+    --jf-page-width: 480px;
+    --jf-nav-height: 76px;
+}
+
+
+/* =========================================================
+   APP SHELL
+   ========================================================= */
+
+.app-shell {
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    background:
+        radial-gradient(
+            circle at 50% -15%,
+            rgba(201, 166, 107, 0.08),
+            transparent 36%
+        ),
+        var(--jf-bg);
+}
+
+.page {
+    width: min(100%, var(--jf-page-width));
+    margin: 0 auto;
+
+    padding:
+        0 20px
+        calc(var(--jf-nav-height) + 30px);
+}
+
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.topbar {
+    width: min(100%, var(--jf-page-width));
+    margin: 0 auto;
+
+    padding: 18px 20px 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+
+    color: inherit;
+    text-decoration: none;
+}
+
+.brand-mark {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(201, 166, 107, 0.45);
+    border-radius: 11px;
+
+    color: var(--jf-gold-light);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(201, 166, 107, 0.14),
+            rgba(201, 166, 107, 0.03)
+        );
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.brand-name {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.brand-name strong {
+    color: var(--jf-text);
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+}
+
+.brand-name small {
+    color: var(--jf-muted);
+
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+}
+
+.logout-button {
+    color: var(--jf-muted);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: color 160ms ease;
+}
+
+.logout-button:hover {
+    color: var(--jf-text);
+}
+
+
+/* =========================================================
+   SHARED PAGE HEADER
+   ========================================================= */
+
+.page-header {
+    padding-top: 24px;
+    margin-bottom: 34px;
+}
+
+.page-header .eyebrow {
+    margin: 0 0 10px;
+
+    color: var(--jf-gold);
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+}
+
+.page-header h1 {
+    margin: 0 0 9px;
+
+    color: var(--jf-text);
+
+    font-size: 31px;
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+}
+
+.page-header > .muted {
+    max-width: 330px;
+
+    margin: 0;
+
+    color: var(--jf-muted);
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   SHARED TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3 {
+    color: var(--jf-text);
+}
+
+h1 {
+    font-weight: 500;
+}
+
+.muted {
+    color: var(--jf-muted);
+}
+
+.label {
+    display: block;
+
+    margin: 28px 0 12px;
+
+    color: var(--jf-muted);
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   SHARED SECTIONS
+   ========================================================= */
+
+.section {
+    margin-bottom: 38px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 13px;
+}
+
+.section-heading .label {
+    margin: 0;
+}
+
+.count-badge {
+    min-width: 25px;
+    height: 25px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 7px;
+
+    border: 1px solid rgba(201, 166, 107, 0.24);
+    border-radius: 50%;
+
+    color: var(--jf-gold-light);
+    background: rgba(201, 166, 107, 0.07);
+
+    font-size: 9px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   DASHBOARD
+   ========================================================= */
+
+.jf-dashboard {
+    padding-top: 22px;
+    padding-bottom: 20px;
+}
+
+.jf-dashboard-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+
+    margin-bottom: 42px;
+}
+
+.jf-overline {
+    display: block;
+
+    margin-bottom: 11px;
+
+    color: var(--jf-gold);
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+}
+
+.jf-dashboard-header h1 {
+    margin: 0;
+
+    color: var(--jf-text);
+
+    font-size: clamp(28px, 8vw, 36px);
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+}
+
+.jf-profile-button {
+    flex: 0 0 auto;
+
+    width: 44px;
+    height: 44px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid var(--jf-line-strong);
+    border-radius: 50%;
+
+    color: var(--jf-text);
+    background: var(--jf-surface);
+
+    text-decoration: none;
+
+    transition:
+        transform 160ms ease,
+        border-color 160ms ease;
+}
+
+.jf-profile-button span {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    place-items: center;
+
+    color: var(--jf-gold-light);
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.jf-profile-button:active {
+    transform: scale(0.95);
+}
+
+
+/* =========================================================
+   DASHBOARD SECTION HEADERS
+   ========================================================= */
+
+.jf-section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+
+    margin-bottom: 16px;
+}
+
+.jf-section-kicker {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--jf-muted);
+
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.24em;
+}
+
+.jf-section-header h2 {
+    margin: 0;
+
+    color: var(--jf-text);
+
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+}
+
+.jf-small-link {
+    padding-bottom: 2px;
+
+    color: var(--jf-gold);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   DASHBOARD — NEXT APPOINTMENT
+   ========================================================= */
+
+.jf-next-section {
+    margin-bottom: 22px;
+}
+
+.jf-appointment {
+    position: relative;
+
+    min-height: 166px;
+
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 19px;
+
+    padding: 22px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(201, 166, 107, 0.22);
+    border-radius: var(--jf-radius-lg);
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(201, 166, 107, 0.10),
+            transparent 43%
+        ),
+        linear-gradient(
+            145deg,
+            #171613,
+            #111110 72%
+        );
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.025);
+}
+
+.jf-appointment::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 2px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            var(--jf-gold),
+            transparent
+        );
+}
+
+.jf-appointment-date {
+    width: 72px;
+    height: 116px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--jf-line);
+    border-radius: 16px;
+
+    background: rgba(0, 0, 0, 0.18);
+}
+
+.jf-appointment-month {
+    margin-bottom: 3px;
+
+    color: var(--jf-gold);
+
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+}
+
+.jf-appointment-date strong {
+    color: var(--jf-text);
+
+    font-size: 34px;
+    font-weight: 500;
+    letter-spacing: -0.06em;
+    line-height: 1;
+}
+
+.jf-appointment-weekday {
+    margin-top: 7px;
+
+    color: var(--jf-muted);
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.jf-appointment-main {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.jf-appointment-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin-bottom: 8px;
+
+    color: var(--jf-green);
+
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.17em;
+}
+
+.jf-appointment-status span {
+    width: 5px;
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: var(--jf-green);
+
+    box-shadow:
+        0 0 0 3px rgba(127, 169, 130, 0.10);
+}
+
+.jf-appointment-main h3 {
+    max-width: 190px;
+
+    margin: 0 0 13px;
+
+    color: var(--jf-text);
+
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+}
+
+.jf-appointment-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+}
+
+.jf-appointment-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    color: var(--jf-text-soft);
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.jf-appointment-meta svg {
+    width: 13px;
+    height: 13px;
+
+    color: var(--jf-muted);
+}
+
+.jf-appointment-price {
+    position: absolute;
+    top: 21px;
+    right: 20px;
+
+    color: var(--jf-gold-light);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.jf-appointment-link {
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 8px;
+    padding: 0 17px;
+
+    border: 1px solid var(--jf-line);
+    border-radius: 14px;
+
+    color: var(--jf-text-soft);
+    background: rgba(255, 255, 255, 0.018);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease;
+}
+
+.jf-appointment-link:hover {
+    border-color: var(--jf-line-strong);
+
+    color: var(--jf-text);
+
+    background: rgba(255, 255, 255, 0.035);
+}
+
+.jf-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--jf-gold);
+
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+
+/* Dashboard empty */
+
+.jf-empty-appointment {
+    min-height: 116px;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    padding: 20px;
+
+    border: 1px solid var(--jf-line);
+    border-radius: var(--jf-radius-md);
+
+    background: var(--jf-surface);
+}
+
+.jf-empty-icon {
+    width: 44px;
+    height: 44px;
+
+    flex: 0 0 44px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid var(--jf-line);
+    border-radius: 13px;
+
+    color: var(--jf-gold);
+}
+
+.jf-empty-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.jf-empty-appointment strong {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--jf-text);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.jf-empty-appointment p {
+    max-width: 230px;
+
+    margin: 0;
+
+    color: var(--jf-muted);
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   DASHBOARD — BOOK CTA
+   ========================================================= */
+
+.jf-book-button {
+    min-height: 78px;
+
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr) 24px;
+    align-items: center;
+    gap: 14px;
+
+    margin-bottom: 42px;
+    padding: 15px 17px;
+
+    border: 1px solid rgba(201, 166, 107, 0.30);
+    border-radius: 20px;
+
+    color: #17130c;
+
+    background:
+        linear-gradient(
+            135deg,
+            #d9bc88,
+            #b99359
+        );
+
+    box-shadow:
+        0 14px 34px rgba(0, 0, 0, 0.20);
+
+    text-decoration: none;
+
+    transition:
+        transform 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.jf-book-button:hover {
+    box-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.28);
+}
+
+.jf-book-button:active {
+    transform: scale(0.985);
+}
+
+.jf-book-icon {
+    width: 46px;
+    height: 46px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(0, 0, 0, 0.14);
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.jf-book-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.jf-book-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.jf-book-content small {
+    color: #17130c;
+
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+
+    opacity: 0.60;
+}
+
+.jf-book-content strong {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: -0.015em;
+}
+
+.jf-book-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   DASHBOARD — STATS
+   ========================================================= */
+
+.jf-stats-section {
+    margin-bottom: 34px;
+}
+
+.jf-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.jf-stat {
+    min-height: 135px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 17px;
+
+    border: 1px solid var(--jf-line);
+    border-radius: var(--jf-radius-md);
+
+    background: var(--jf-surface);
+}
+
+.jf-stat-icon {
+    width: 32px;
+    height: 32px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid var(--jf-line);
+    border-radius: 10px;
+
+    color: var(--jf-gold);
+}
+
+.jf-stat-icon svg {
+    width: 15px;
+    height: 15px;
+}
+
+.jf-stat strong {
+    display: block;
+
+    color: var(--jf-text);
+
+    font-size: 31px;
+    font-weight: 500;
+    letter-spacing: -0.06em;
+    line-height: 1;
+}
+
+.jf-stat > span:last-child {
+    color: var(--jf-muted);
+
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.jf-history-link {
+    min-height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 10px;
+    padding: 0 16px;
+
+    border-bottom: 1px solid var(--jf-line);
+
+    color: var(--jf-text-soft);
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.jf-history-link .jf-chevron {
+    font-size: 19px;
+}
+
+
+/* =========================================================
+   DASHBOARD FOOTER
+   ========================================================= */
+
+.jf-dashboard-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    padding: 20px 0 4px;
+
+    color: #4f4c47;
+
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: 0.24em;
+}
+
+.jf-dashboard-footer i {
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: var(--jf-gold-dark);
+}
+
+
+/* =========================================================
+   APPOINTMENTS PAGE
+   ========================================================= */
+
+.appointment-list-card {
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 15px;
+
+    min-height: 118px;
+
+    padding: 18px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(201, 166, 107, 0.20);
+    border-radius: 20px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(201, 166, 107, 0.09),
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #171613,
+            #111110
+        );
+
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+.appointment-list-card::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    width: 2px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            var(--jf-gold),
+            transparent
+        );
+}
+
+.list-date {
+    width: 64px;
+    height: 82px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--jf-line);
+    border-radius: 15px;
+
+    background: rgba(0, 0, 0, 0.17);
+}
+
+.list-date span {
+    margin-bottom: 4px;
+
+    color: var(--jf-gold);
+
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+.list-date strong {
+    color: var(--jf-text);
+
+    font-size: 29px;
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    line-height: 1;
+}
+
+.list-main {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.list-time {
+    margin-bottom: 5px;
+
+    color: var(--jf-gold-light);
+
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.list-main > strong {
+    max-width: 150px;
+
+    overflow: hidden;
+
+    color: var(--jf-text);
+
+    font-size: 15px;
+    font-weight: 650;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-main > .muted {
+    margin-top: 4px;
+
+    color: var(--jf-muted);
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   STATUS PILLS
+   ========================================================= */
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 25px;
+
+    padding: 0 8px;
+
+    border: 1px solid transparent;
+    border-radius: 99px;
+
+    font-size: 7px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    white-space: nowrap;
+}
+
+.status-scheduled {
+    color: #9bc39f;
+
+    border-color: rgba(127, 169, 130, 0.18);
+    background: rgba(127, 169, 130, 0.08);
+}
+
+.status-completed {
+    color: var(--jf-gold-light);
+
+    border-color: rgba(201, 166, 107, 0.18);
+    background: rgba(201, 166, 107, 0.07);
+}
+
+.status-cancelled {
+    color: var(--jf-red);
+
+    border-color: rgba(201, 111, 111, 0.16);
+    background: rgba(201, 111, 111, 0.07);
+}
+
+.status-noshow {
+    color: #aaa29a;
+
+    border-color: rgba(170, 162, 154, 0.14);
+    background: rgba(170, 162, 154, 0.06);
+}
+
+.status-default {
+    color: var(--jf-muted);
+
+    border-color: var(--jf-line);
+    background: var(--jf-surface-2);
+}
+
+
+/* =========================================================
+   APPOINTMENT ACTIONS
+   ========================================================= */
+
+.appointment-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    margin-top: 8px;
+}
+
+.appointment-actions .btn,
+.appointment-actions form,
+.appointment-actions .btn-danger-outline {
+    width: 100%;
+}
+
+.appointment-actions .btn,
+.btn-danger-outline {
+    min-height: 43px;
+
+    border-radius: 12px;
+
+    font-size: 10px;
+}
+
+.btn-danger-outline {
+    border: 1px solid rgba(201, 111, 111, 0.24);
+
+    color: var(--jf-red);
+    background: rgba(201, 111, 111, 0.025);
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.restriction-text {
+    margin: 3px 0 0;
+
+    color: #77716a;
+
+    font-size: 9px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   HISTORY
+   ========================================================= */
+
+.history-section {
+    padding-top: 5px;
+}
+
+.history-card {
+    display: grid;
+    grid-template-columns: 50px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 13px;
+
+    min-height: 76px;
+
+    margin-bottom: 8px;
+    padding: 12px 14px;
+
+    border: 1px solid var(--jf-line);
+    border-radius: 15px;
+
+    background: rgba(17, 17, 16, 0.72);
+}
+
+.history-date {
+    width: 45px;
+    height: 48px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: var(--jf-surface-2);
+}
+
+.history-date strong {
+    color: var(--jf-text);
+
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.history-date span {
+    margin-top: 4px;
+
+    color: var(--jf-muted);
+
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.history-main {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.history-main strong {
+    overflow: hidden;
+
+    color: var(--jf-text);
+
+    font-size: 12px;
+    font-weight: 650;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.history-main .muted {
+    color: var(--jf-muted);
+
+    font-size: 10px;
+}
+
+.history-card .status {
+    align-self: center;
+}
+
+
+/* =========================================================
+   EMPTY STATES
+   ========================================================= */
+
+.empty-card {
+    padding: 28px 20px;
+
+    border: 1px solid var(--jf-line);
+    border-radius: 20px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(201, 166, 107, 0.045),
+            transparent 55%
+        ),
+        var(--jf-surface);
+}
+
+.empty-card .empty-icon {
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    margin: 0 auto 15px;
+
+    border: 1px solid rgba(201, 166, 107, 0.16);
+    border-radius: 14px;
+
+    color: var(--jf-gold);
+    background: rgba(201, 166, 107, 0.045);
+}
+
+.empty-card .empty-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+.empty-card h2 {
+    margin: 0 0 6px;
+
+    color: var(--jf-text);
+
+    font-size: 16px;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+}
+
+.empty-card p {
+    margin: 0 auto 18px;
+
+    color: var(--jf-muted);
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.empty-card .btn {
+    width: 100%;
+}
+
+.small-empty {
+    padding: 20px;
+
+    text-align: left;
+}
+
+.small-empty p {
+    margin: 0;
+}
+
+
+/* =========================================================
+   BOOKING PAGE
+   ========================================================= */
+
+.booking-page {
+    padding-top: 20px;
+    padding-bottom: 25px;
+}
+
+
+/* Back */
+
+.booking-page > .back {
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    margin: 0 0 25px;
+    padding: 0;
+
+    border: 0;
+
+    color: var(--jf-muted);
+    background: transparent;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: color 160ms ease;
+}
+
+.booking-page > .back:hover {
+    color: var(--jf-text);
+}
+
+.booking-page > .back svg {
+    width: 17px;
+    height: 17px;
+}
+
+
+/* Progress header */
+
+.booking-progress-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 11px;
+}
+
+.booking-progress-header .eyebrow {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--jf-gold);
+
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.24em;
+}
+
+.booking-progress-header .steps {
+    margin: 0;
+
+    color: var(--jf-text-soft);
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.progress-number {
+    color: var(--jf-muted);
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+
+/* Progress */
+
+.booking-page .progress {
+    position: relative;
+
+    height: 3px;
+
+    margin: 0 0 30px;
+
+    overflow: hidden;
+
+    border-radius: 99px;
+
+    background: #20201d;
+}
+
+.booking-page .progress div {
+    height: 100%;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--jf-gold-dark),
+            var(--jf-gold-light)
+        );
+
+    box-shadow:
+        0 0 12px rgba(201, 166, 107, 0.18);
+
+    transition: width 300ms ease;
+}
+
+
+/* Title */
+
+.booking-title {
+    margin: 0 0 9px;
+
+    color: var(--jf-text);
+
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.045em;
+    line-height: 1.08;
+}
+
+.booking-description {
+    max-width: 330px;
+
+    margin: 0 0 23px;
+
+    color: var(--jf-muted);
+
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+
+/* Error */
+
+.error-message {
+    margin-bottom: 18px;
+    padding: 13px 15px;
+
+    border: 1px solid rgba(201, 111, 111, 0.24);
+    border-radius: 13px;
+
+    color: #d39191;
+    background: rgba(201, 111, 111, 0.06);
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   BOOKING — SERVICES
+   ========================================================= */
+
+.booking-options {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.booking-option {
+    position: relative;
+
+    width: 100%;
+    min-height: 91px;
+
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) auto 18px;
+    align-items: center;
+    gap: 13px;
+
+    padding: 14px 15px;
+
+    border: 1px solid var(--jf-line);
+    border-radius: 18px;
+
+    color: var(--jf-text);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.025),
+            rgba(255, 255, 255, 0.008)
+        );
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        transform 150ms ease,
+        border-color 150ms ease,
+        background 150ms ease;
+}
+
+.booking-option:hover {
+    border-color: rgba(201, 166, 107, 0.25);
+
+    background: rgba(201, 166, 107, 0.035);
+}
+
+.booking-option:active {
+    transform: scale(0.985);
+}
+
+.booking-option-icon {
+    width: 48px;
+    height: 48px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(201, 166, 107, 0.16);
+    border-radius: 14px;
+
+    color: var(--jf-gold);
+
+    background: rgba(201, 166, 107, 0.055);
+}
+
+.booking-option-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+.booking-option-content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.booking-option-content strong {
+    overflow: hidden;
+
+    color: var(--jf-text);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.booking-option-content small {
+    color: var(--jf-muted);
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.booking-option-price {
+    color: var(--jf-gold-light);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+.booking-option-arrow {
+    width: 15px;
+    height: 15px;
+
+    color: #67625b;
+}
+
+
+/* =========================================================
+   BOOKING — CALENDAR
+   ========================================================= */
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.date-chip {
+    min-height: 76px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 7px;
+
+    border: 1px solid var(--jf-line);
+    border-radius: 15px;
+
+    color: var(--jf-text);
+    background: var(--jf-surface);
+
+    cursor: pointer;
+
+    transition:
+        transform 140ms ease,
+        border-color 140ms ease,
+        background 140ms ease;
+}
+
+.date-chip:not(.disabled):hover {
+    border-color: rgba(201, 166, 107, 0.35);
+
+    background: rgba(201, 166, 107, 0.045);
+}
+
+.date-chip:not(.disabled):active {
+    transform: scale(0.95);
+}
+
+.date-chip small {
+    color: var(--jf-muted);
+
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.date-chip strong {
+    color: var(--jf-text);
+
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.date-chip.disabled {
+    opacity: 0.25;
+
+    cursor: not-allowed;
+}
+
+.calendar-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 15px;
+
+    color: var(--jf-muted);
+
+    font-size: 9px;
+    line-height: 1.4;
+}
+
+.note-dot {
+    width: 5px;
+    height: 5px;
+
+    flex: 0 0 5px;
+
+    border-radius: 50%;
+
+    background: #5d5a55;
+}
+
+
+/* =========================================================
+   BOOKING — SELECTED DATE
+   ========================================================= */
+
+.selected-date {
+    min-height: 57px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 24px;
+    padding: 10px 13px;
+
+    border: 1px solid rgba(201, 166, 107, 0.18);
+    border-radius: 15px;
+
+    color: var(--jf-text);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(201, 166, 107, 0.07),
+            rgba(201, 166, 107, 0.025)
+        );
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.selected-date-icon {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 11px;
+
+    color: var(--jf-gold);
+
+    background: rgba(201, 166, 107, 0.07);
+}
+
+.selected-date-icon svg {
+    width: 17px;
+    height: 17px;
+}
+
+
+/* =========================================================
+   BOOKING — TIMES
+   ========================================================= */
+
+.time-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 9px;
+}
+
+.time-slot {
+    min-height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--jf-line);
+    border-radius: 14px;
+
+    color: var(--jf-text);
+    background: var(--jf-surface);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 140ms ease,
+        border-color 140ms ease,
+        color 140ms ease,
+        background 140ms ease;
+}
+
+.time-slot:hover {
+    border-color: rgba(201, 166, 107, 0.35);
+
+    color: var(--jf-gold-light);
+
+    background: rgba(201, 166, 107, 0.045);
+}
+
+.time-slot:active {
+    transform: scale(0.95);
+}
+
+
+/* =========================================================
+   BOOKING — CONFIRMATION
+   ========================================================= */
+
+.confirmation-card {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 21px;
+
+    border: 1px solid rgba(201, 166, 107, 0.22);
+    border-radius: 22px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(201, 166, 107, 0.10),
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            #171613,
+            #111110
+        );
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.20);
+}
+
+.confirmation-card::before {
+    content: "";
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--jf-gold),
+            transparent
+        );
+}
+
+.confirmation-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 27px;
+}
+
+.confirmation-label {
+    color: var(--jf-muted);
+
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 0.22em;
+}
+
+.confirmation-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+}
+
+.confirmation-date span:first-child {
+    color: var(--jf-gold);
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.confirmation-date strong {
+    margin: 4px 0;
+
+    color: var(--jf-text);
+
+    font-size: 45px;
+    font-weight: 400;
+    letter-spacing: -0.07em;
+    line-height: 1;
+}
+
+.confirmation-date span:last-child {
+    color: var(--jf-muted);
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.confirmation-time {
+    margin-top: 12px;
+
+    color: var(--jf-gold-light);
+
+    font-size: 22px;
+    font-weight: 600;
+
+    text-align: center;
+}
+
+.confirmation-divider {
+    height: 1px;
+
+    margin: 23px 0 4px;
+
+    background: var(--jf-line);
+}
+
+.confirmation-row {
+    min-height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+.confirmation-row span {
+    color: var(--jf-muted);
+
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.confirmation-row strong {
+    color: var(--jf-text);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-align: right;
+}
+
+.confirmation-row .accent-text {
+    color: var(--jf-gold-light);
+}
+
+.confirmation-payment {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    margin-top: 16px;
+    padding: 11px 12px;
+
+    border-radius: 12px;
+
+    color: var(--jf-muted);
+    background: rgba(255, 255, 255, 0.025);
+
+    font-size: 9px;
+    line-height: 1.4;
+}
+
+.confirmation-payment svg {
+    width: 16px;
+    height: 16px;
+
+    flex: 0 0 16px;
+
+    color: var(--jf-gold);
+}
+
+
+/* Confirm button */
+
+.booking-confirm-button {
+    width: 100%;
+    min-height: 57px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    margin-top: 14px;
+
+    border: 0;
+    border-radius: 15px;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.booking-confirm-button svg {
+    width: 17px;
+    height: 17px;
+}
+
+.booking-policy {
+    max-width: 290px;
+
+    margin: 12px auto 0;
+
+    color: #68635c;
+
+    font-size: 9px;
+    line-height: 1.5;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   GENERIC CARDS / BUTTONS / FORMS
+   ========================================================= */
+
+.card {
+    padding: 20px;
+
+    border: 1px solid var(--jf-line);
+    border-radius: var(--jf-radius-md);
+
+    background: var(--jf-surface);
+}
+
+.when {
+    color: var(--jf-text);
+    font-weight: 700;
+}
+
+.time {
+    margin-top: 5px;
+
+    color: var(--jf-gold-light);
+
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.service {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-top: 15px;
+    padding-top: 15px;
+
+    border-top: 1px solid var(--jf-line);
+
+    color: var(--jf-text-soft);
+}
+
+.big {
+    color: var(--jf-text);
+
+    font-size: 34px;
+    font-weight: 600;
+}
+
+
+/* Buttons */
+
+.btn {
+    min-height: 48px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 18px;
+
+    border: 1px solid var(--jf-line-strong);
+    border-radius: 13px;
+
+    color: var(--jf-text);
+    background: var(--jf-surface-2);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+    text-decoration: none;
+
+    transition:
+        transform 150ms ease,
+        border-color 150ms ease,
+        background 150ms ease;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    border-color: var(--jf-gold);
+
+    color: #17130c;
+    background: var(--jf-gold);
+}
+
+.btn-outline {
+    color: var(--jf-text-soft);
+    background: transparent;
+}
+
+
+/* Forms */
+
+label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--jf-text-soft);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    min-height: 48px;
+
+    padding: 0 14px;
+
+    border: 1px solid var(--jf-line-strong);
+    border-radius: 12px;
+
+    outline: none;
+
+    color: var(--jf-text);
+    background: var(--jf-surface-2);
+
+    font-size: 14px;
+
+    transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+textarea {
+    min-height: 110px;
+
+    padding-top: 13px;
+    padding-bottom: 13px;
+
+    resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: rgba(201, 166, 107, 0.60);
+
+    box-shadow:
+        0 0 0 3px rgba(201, 166, 107, 0.08);
+}
+
+
+/* =========================================================
+   OLD / GENERIC BOOKING COMPATIBILITY
+   ========================================================= */
+
+.choice {
+    width: 100%;
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    margin-bottom: 10px;
+    padding: 16px 18px;
+
+    border: 1px solid var(--jf-line);
+    border-radius: var(--jf-radius-md);
+
+    color: var(--jf-text);
+    background: var(--jf-surface);
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.choice-title {
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.choice-price {
+    color: var(--jf-gold-light);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.grid {
+    display: grid;
+    gap: 9px;
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.chip {
+    min-height: 60px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    border: 1px solid var(--jf-line);
+    border-radius: 13px;
+
+    color: var(--jf-text-soft);
+    background: var(--jf-surface);
+
+    cursor: pointer;
+}
+
+.chip small {
+    color: var(--jf-muted);
+
+    font-size: 8px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+.chip strong {
+    color: var(--jf-text);
+
+    font-size: 18px;
+}
+
+.chip.slot {
+    min-height: 52px;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.chip:disabled {
+    opacity: 0.28;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   BOTTOM NAVIGATION
+   ========================================================= */
+
+.bottom-nav {
+    position: fixed;
+    z-index: 50;
+
+    left: 50%;
+    bottom: 0;
+
+    width: min(100%, 480px);
+
+    transform: translateX(-50%);
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: end;
+
+    height: var(--jf-nav-height);
+
+    padding:
+        8px 12px
+        max(8px, env(safe-area-inset-bottom));
+
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+    background: rgba(10, 10, 9, 0.92);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.nav-item {
+    min-height: 52px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    color: #68645e;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        color 160ms ease,
+        transform 160ms ease;
+}
+
+.nav-item svg {
+    width: 20px;
+    height: 20px;
+}
+
+.nav-item.active {
+    color: var(--jf-gold-light);
+}
+
+.nav-item:active {
+    transform: scale(0.94);
+}
+
+.nav-book {
+    position: relative;
+
+    margin-top: -26px;
+}
+
+.nav-book .book-icon {
+    width: 52px;
+    height: 52px;
+
+    display: grid;
+    place-items: center;
+
+    border: 4px solid var(--jf-bg);
+    border-radius: 18px;
+
+    color: #17130c;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e0c38e,
+            #b99359
+        );
+
+    box-shadow:
+        0 8px 22px rgba(0, 0, 0, 0.28);
+}
+
+.nav-book .book-icon svg {
+    width: 21px;
+    height: 21px;
+}
+
+.nav-book span:last-child {
+    color: var(--jf-gold);
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.is-loading {
+    opacity: 0.58;
+
+    pointer-events: none;
+
+    transition: opacity 160ms ease;
+}
+
+
+/* =========================================================
+   SCREEN READER
+   ========================================================= */
+
+.jf-screen-reader-date {
+    position: absolute !important;
+
+    width: 1px !important;
+    height: 1px !important;
+
+    padding: 0 !important;
+    margin: -1px !important;
+
+    overflow: hidden !important;
+
+    clip: rect(0, 0, 0, 0) !important;
+    clip-path: inset(50%) !important;
+
+    white-space: nowrap !important;
+
+    border: 0 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+    .page {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .topbar {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .appointment-list-card {
+        grid-template-columns: 57px minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .list-date {
+        width: 57px;
+        height: 76px;
+    }
+
+    .list-date strong {
+        font-size: 26px;
+    }
+
+    .appointment-list-card > .status {
+        position: absolute;
+
+        right: 13px;
+        bottom: 13px;
+    }
+
+    .list-main {
+        padding-bottom: 22px;
+    }
+
+    .calendar-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .booking-option {
+        grid-template-columns: 43px minmax(0, 1fr) auto 14px;
+
+        gap: 10px;
+
+        padding: 12px;
+    }
+
+    .booking-option-icon {
+        width: 43px;
+        height: 43px;
+    }
+
+    .booking-option-arrow {
+        width: 13px;
+        height: 13px;
+    }
+
+    .confirmation-card {
+        padding: 18px;
+    }
+}
+
+
+/* =========================================================
+   TABLET / DESKTOP
+   ========================================================= */
+
+@media (min-width: 600px) {
+
+    .page {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .topbar {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .page-header {
+        padding-top: 34px;
+    }
+
+    .jf-dashboard {
+        padding-top: 34px;
+    }
+
+    .jf-dashboard-header {
+        margin-bottom: 48px;
+    }
+
+    .booking-page {
+        padding-top: 30px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   IMPORTANT:
+   Only accessibility overrides belong here.
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+    }
+}
+

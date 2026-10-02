@@ -48,4 +48,9 @@ class Barbershop extends Model
     {
         return $this->hasOne(BarbershopSetting::class)->withDefault();
     }
+
+    public function shopImages(): HasMany
+    {
+        return $this->hasMany(ShopImage::class);
+    }
 }

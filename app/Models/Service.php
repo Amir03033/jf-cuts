@@ -11,8 +11,13 @@ class Service extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'duration', 'price', 'active'];
-
+    protected $fillable = [
+        'barbershop_id',
+        'name',
+        'duration',
+        'price',
+        'active',
+    ];
     protected $attributes = [
         'active' => true,
     ];

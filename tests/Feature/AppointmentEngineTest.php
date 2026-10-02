@@ -171,7 +171,7 @@ class AppointmentEngineTest extends TestCase
             fn () => $this->book(User::factory()->create(), $this->knippen, '2026-10-02 14:00'),
             BookingException::class
         );
-        $this->assertDatabaseCount('appointments', 1);
+        $this->assertDatabaseCount('Appointments', 1);
     }
 
     public function test_times_between_the_intervals_are_refused(): void

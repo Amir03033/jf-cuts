@@ -7,7 +7,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AvailabilityRule extends Model
 {
-    protected $fillable = ['day_of_week', 'start_time', 'end_time', 'is_available'];
+    protected $fillable = [
+        'barbershop_id',
+        'day_of_week',
+        'start_time',
+        'end_time',
+        'is_available',
+    ];
 
     protected function casts(): array
     {

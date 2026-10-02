@@ -157,15 +157,17 @@ class AppointmentService
      * Sluit de zaak even af voor andere boekingen tot de transactie klaar is.
      * Daardoor kunnen twee klanten op hetzelfde moment nooit hetzelfde tijdslot pakken.
      */
-    private function lockShop(Barbershop $shop): Barbershop
+    private function lockShop(Barbershop|int $shop): Barbershop
     {
-        return Barbershop::whereKey($shop->id)->lockForUpdate()->firstOrFail();
+        $id = $shop instanceof Barbershop ? $shop->id : $shop;
+
+        return Barbershop::whereKey($id)->lockForUpdate()->firstOrFail();
     }
 
     /** Altijd eerst de zaak, dan de afspraak locken (vaste volgorde voorkomt vastlopers). */
     private function lockForChange(Appointment $appointment): Appointment
     {
-        $this->lockShop($appointment->barbershop);
+        $this->lockShop($appointment->barbershop_id);   // geen relatie inlezen vóór het slot
 
         return Appointment::whereKey($appointment->id)->lockForUpdate()->firstOrFail();
     }

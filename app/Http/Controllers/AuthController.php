@@ -22,15 +22,26 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
+        if (! Auth::attempt(
+            $credentials,
+            $request->boolean('remember')
+        )) {
             return back()
-                ->withErrors(['email' => 'E-mailadres of wachtwoord klopt niet.'])
+                ->withErrors([
+                    'email' => 'E-mailadres of wachtwoord klopt niet.',
+                ])
                 ->onlyInput('email');
         }
 
         $request->session()->regenerate();
 
-        return redirect()->route('dashboard');
+        $user = Auth::user();
+
+        if ($user->isBarber()) {
+            return redirect('/barber/dashboard');
+        }
+
+        return redirect('/customer/dashboard');
     }
 
     public function showRegister()
@@ -42,24 +53,45 @@ class AuthController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
-            'phone' => ['nullable', 'string', 'max:20', 'regex:/^[0-9+\-\s()]+$/'],
-            'password' => ['required', 'string', Password::min(8)],
+            'email' => [
+                'required',
+                'string',
+                'lowercase',
+                'email',
+                'max:255',
+                'unique:users',
+            ],
+            'phone' => [
+                'nullable',
+                'string',
+                'max:20',
+                'regex:/^[0-9+\-\s()]+$/',
+            ],
+            'password' => [
+                'required',
+                'string',
+                Password::min(8),
+            ],
         ]);
 
         $user = new User($data);
-        $user->role = UserRole::Customer; // altijd klant, nooit uit het formulier
+
+        $user->role = UserRole::Customer;
+
         $user->save();
 
         Auth::login($user);
+
         $request->session()->regenerate();
 
         return redirect()->route('dashboard');
+
     }
 
     public function logout(Request $request)
     {
         Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
         $barber = new User([
             'name' => 'JF',
             'email' => 'jf@jfcuts.nl',
-            'password' => 'verander-mij-123',
+            'password' => 'Amir2008',
         ]);
         $barber->role = UserRole::Barber;
         $barber->save();
