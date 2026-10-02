@@ -1,5 +1,23 @@
+:root {
+    --bg: #F7F5F2;
+    --card: #fff;
+    --text: #181818;
+    --accent: #8B5E3C;
+    --border: #E7E2DC;
+}
 
-    /* JF Cuts authenticatie */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* JF Cuts authenticatie */
 
 .wrap {
     min-height: 100vh;
