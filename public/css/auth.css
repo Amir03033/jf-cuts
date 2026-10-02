@@ -1,0 +1,131 @@
+
+    /* JF Cuts authenticatie */
+
+.wrap {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+}
+
+.card {
+    width: 100%;
+    max-width: 430px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.card h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0 0 28px;
+    letter-spacing: -0.5px;
+}
+
+.card form {
+    margin: 0;
+}
+
+.card label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 18px 0 7px;
+}
+
+.card label:first-of-type {
+    margin-top: 0;
+}
+
+.card input {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.card input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.10);
+}
+
+.card button {
+    display: block;
+    width: 100%;
+    margin-top: 24px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    border: 0;
+    border-radius: 12px;
+    background: var(--accent);
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+.card button:hover {
+    opacity: 0.9;
+}
+
+.card button:active {
+    transform: translateY(1px);
+}
+
+.link {
+    text-align: center;
+    margin-top: 22px;
+    font-size: 14px;
+    color: #666;
+}
+
+.link a {
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: #b3261e;
+    font-size: 13px;
+    margin-top: 6px;
+}
+    .auth-image {
+        display: block;
+        width: calc(100% + 48px);
+        height: 320px;
+        margin: -24px -24px 24px;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 16px 16px 0 0;
+    }
+
+@media (max-width: 480px) {
+    .wrap {
+        padding: 16px;
+    }
+
+    .card {
+        padding: 24px 20px;
+    }
+
+    .card h1 {
+        font-size: 25px;
+    }
+}
+

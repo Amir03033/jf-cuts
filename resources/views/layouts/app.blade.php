@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
     <title>JF Cuts</title>
     <style>
         :root { --bg:#F7F5F2; --card:#fff; --text:#181818; --accent:#8B5E3C; --border:#E7E2DC; }
