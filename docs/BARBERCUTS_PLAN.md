@@ -1,3 +1,5 @@
+> **Verouderd.** BarberCuts wordt een apart, nieuw project. De actuele opdracht staat in `docs/BARBERCUTS_BOUWOPDRACHT.md`. Alleen §1.1 (bekende problemen in JF Cuts) is nog nuttig voor dit project.
+
 # BarberCuts.nl — Plan & logica
 
 > Doel: JF Cuts (één kapperszaak) uitbreiden naar **barbercuts.nl**, een platform waar kappers uit heel Nederland hun afspraken, klanten en omzet beheren.
