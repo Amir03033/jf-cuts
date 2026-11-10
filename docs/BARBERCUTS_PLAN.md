@@ -413,6 +413,8 @@ Elke fase: eigen branch + PR, migraties omkeerbaar, tests groen, app bruikbaar.
 
 ## 10. Open vragen voor de eigenaar
 
+> De volledige, bijgewerkte vragenlijst (met advies en ruimte voor antwoorden) staat in `docs/START_HIER.md` §3. Die lijst is leidend.
+
 1. Blijft **jfcuts.nl** een eigen domein (doorverwijzen naar `barbercuts.nl/jf-cuts`), of wordt JF Cuts gewoon de eerste klant op het platform?
 2. Tarieven en trialduur (§2.7) — akkoord of anders?
 3. Gastboeken (zonder account) standaard aan? (Advies: ja, verhoogt conversie flink op mobiel.)
